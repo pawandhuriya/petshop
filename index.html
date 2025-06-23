@@ -2,29 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pet Shop</title>
+  <title>Paws & Claws Pet Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>🐾 Welcome to Paws & Claws Pet Shop!</h1>
-  </header>
-  <main>
-    <section class="pets">
-      <div class="pet-card">
-        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d" alt="Dog">
-        <h2>Dogs</h2>
-        <p>Loyal companions for your family.</p>
+    <nav class="navbar">
+      <div class="logo">🐾 Paws & Claws</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#pets">Pets</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#adopt" class="cta-btn">Adopt Now</a>
+    </nav>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Welcome to Paws & Claws</h1>
+        <p>Your new best friend is waiting for you!</p>
+        <a href="#pets" class="cta-btn">Meet Our Pets</a>
       </div>
-      <div class="pet-card">
-        <img src="https://images.unsplash.com/photo-1518715308788-3005759c81d8" alt="Cat">
-        <h2>Cats</h2>
-        <p>Playful and loving feline friends.</p>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16" alt="Happy pets">
       </div>
     </section>
+  </header>
+
+  <main>
+    <section class="featured" id="pets">
+      <h2>Featured Pets</h2>
+      <div class="pet-grid">
+        <div class="pet-card">
+          <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d" alt="Dog">
+          <h3>Max</h3>
+          <p>2-year-old Labrador, friendly and energetic.</p>
+          <button class="adopt-btn">Adopt Me</button>
+        </div>
+        <div class="pet-card">
+          <img src="https://images.unsplash.com/photo-1518715308788-3005759c81d8" alt="Cat">
+          <h3>Bella</h3>
+          <p>1-year-old Tabby, playful and loving.</p>
+          <button class="adopt-btn">Adopt Me</button>
+        </div>
+        <div class="pet-card">
+          <img src="https://images.unsplash.com/photo-1502672023488-70e25813f145" alt="Rabbit">
+          <h3>Snowy</h3>
+          <p>6-month-old Rabbit, gentle and cuddly.</p>
+          <button class="adopt-btn">Adopt Me</button>
+        </div>
+      </div>
+    </section>
+    <section class="about" id="about">
+      <h2>About Us</h2>
+      <p>
+        Paws & Claws Pet Shop is dedicated to helping pets find loving homes.
+        We provide adoption, grooming, and pet care services. Visit us and meet your new best friend!
+      </p>
+    </section>
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
   </main>
+
   <footer>
-    <p>&copy; 2025 Paws & Claws</p>
+    <p>&copy; 2025 Paws & Claws Pet Shop. All rights reserved.</p>
   </footer>
 </body>
 </html>
