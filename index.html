@@ -4,14 +4,442 @@
   <meta charset="UTF-8">
   <title>Paws & Claws Pet Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts for modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* General Reset & Fonts */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f8fafc;
+      color: #222;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin-top: 0;
+    }
+
+    a {
+      color: #4caf50;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background: linear-gradient(90deg, #4caf50 60%, #a3e635 100%);
+      color: #fff;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(255,255,255,0.04);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.7rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      gap: 10px;
+    }
+    .logo-img {
+      width: 36px;
+      height: 36px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li {
+      display: flex;
+      align-items: center;
+    }
+    .nav-icon {
+      width: 22px;
+      height: 22px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    .cta-btn {
+      background: #fff;
+      color: #4caf50;
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-weight: bold;
+      border: none;
+      transition: 0.2s;
+      box-shadow: 0 2px 8px rgba(76,175,80,0.10);
+      cursor: pointer;
+    }
+    .cta-btn:hover, .nav-cta:hover {
+      background: #a3e635;
+      color: #222;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 50px 40px 30px 40px;
+      min-height: 350px;
+      gap: 30px;
+    }
+    .hero-content {
+      flex: 1 1 340px;
+      padding: 20px 0;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    .hero-content .highlight {
+      color: #a3e635;
+    }
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 28px;
+    }
+    .hero-cta {
+      font-size: 1.1rem;
+      margin-top: 12px;
+    }
+    .hero-image {
+      flex: 1 1 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-image img {
+      width: 320px;
+      max-width: 100%;
+      border-radius: 25px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+    }
+
+    /* Features */
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 42px;
+      margin: 30px 0 10px 0;
+    }
+    .feature-item {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 1px 8px rgba(76,175,80,0.08);
+      padding: 22px 24px;
+      text-align: center;
+      max-width: 220px;
+    }
+    .feature-icon {
+      width: 42px;
+      margin-bottom: 10px;
+    }
+    .feature-item h3 {
+      margin: 10px 0 6px 0;
+      color: #4caf50;
+    }
+
+    /* Pet Cards & Gallery */
+    .featured {
+      padding: 42px 0 25px 0;
+    }
+    .section-icon {
+      width: 32px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .pet-grid {
+      display: flex;
+      gap: 36px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 25px;
+    }
+    .pet-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 10px rgba(76,175,80,0.10);
+      width: 280px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .pet-card:hover {
+      box-shadow: 0 4px 24px rgba(76,175,80,0.18);
+      transform: translateY(-7px) scale(1.025);
+    }
+    .pet-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .pet-info {
+      padding: 16px 14px 7px 14px;
+      width: 100%;
+      text-align: center;
+    }
+    .pet-type-icon {
+      width: 22px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+    .pet-tag {
+      display: inline-block;
+      margin-top: 7px;
+      padding: 3px 11px;
+      border-radius: 14px;
+      font-size: 0.9em;
+      color: #fff;
+      background: #4caf50;
+    }
+    .pet-tag.cat { background: #5bc0eb; }
+    .pet-tag.rabbit { background: #f3b700; color: #222; }
+    .adopt-btn {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 18px;
+      padding: 10px 22px;
+      font-weight: bold;
+      margin-bottom: 13px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .adopt-btn:hover {
+      background: #a3e635;
+      color: #222;
+    }
+    .pet-gallery {
+      margin: 35px 0 0 0;
+      text-align: center;
+    }
+    .pet-gallery h4 {
+      margin: 10px 0 10px 0;
+    }
+    .gallery-row {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    .gallery-row img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 2px 7px rgba(76,175,80,0.09);
+    }
+
+    /* About Section */
+    .about {
+      background: #eafbea;
+      padding: 40px 0 25px 0;
+    }
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .about-img {
+      width: 180px;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(76,175,80,0.09);
+    }
+    .about-content > div {
+      flex: 1 1 400px;
+    }
+    .about-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+    .about-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 7px;
+      font-size: 1.07em;
+    }
+    .list-icon {
+      width: 22px;
+      margin-right: 10px;
+    }
+
+    /* Contact Section */
+    .contact-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 35px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .contact-img {
+      width: 160px;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(76,175,80,0.09);
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 260px;
+      flex: 1 1 260px;
+    }
+    .contact-form input, .contact-form textarea {
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 1em;
+      font-family: inherit;
+      background: #f7fff7;
+      transition: border 0.2s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #4caf50;
+      outline: none;
+    }
+    .contact-form button {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 10px 0;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: background 0.2s;
+    }
+    .contact-form button:hover {
+      background: #a3e635;
+      color: #222;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+      font-size: 1.08em;
+      margin-left: 15px;
+    }
+    .contact-icon {
+      width: 20px;
+      margin-right: 7px;
+      vertical-align: middle;
+    }
+    .socials {
+      margin-top: 10px;
+      display: flex;
+      gap: 13px;
+    }
+    .social-icon {
+      width: 28px;
+      transition: transform 0.18s;
+    }
+    .social-icon:hover {
+      transform: scale(1.16) rotate(-7deg);
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      margin-top: 30px;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+    .footer-icon {
+      width: 32px;
+      vertical-align: middle;
+      margin-bottom: -7px;
+      margin-right: 7px;
+    }
+
+    /* Floating Help Button */
+    .help-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 32px;
+      background: #a3e635;
+      border-radius: 50%;
+      box-shadow: 0 2px 14px rgba(163,230,53,0.19);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+    .help-btn img {
+      width: 34px;
+    }
+    .help-btn:hover {
+      box-shadow: 0 4px 32px rgba(76,175,80,0.22);
+      background: #4caf50;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .features, .pet-grid, .about-content, .contact-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+      .pet-card {
+        width: 85vw;
+        max-width: 350px;
+      }
+      .hero {
+        flex-direction: column;
+        gap: 18px;
+        padding: 28px 10px 18px 10px;
+      }
+      .hero-image img { width: 90vw; max-width: 340px;}
+      .about-img, .contact-img { width: 110px;}
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px 10px;
+      }
+      .nav-links {
+        gap: 16px;
+      }
+      .hero-content h1 { font-size: 2.1rem;}
+      .features { gap: 16px;}
+      .footer-icon { width: 22px;}
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav class="navbar">
       <div class="logo">
         <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Logo" class="logo-img" />
-        Paws & Claws
+        <span>Paws & Claws</span>
       </div>
       <ul class="nav-links">
         <li><a href="#home"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Home" class="nav-icon"/> Home</a></li>
@@ -19,13 +447,13 @@
         <li><a href="#about"><img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png" alt="About" class="nav-icon"/> About</a></li>
         <li><a href="#contact"><img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Contact" class="nav-icon"/> Contact</a></li>
       </ul>
-      <a href="#adopt" class="cta-btn">Adopt Now</a>
+      <a href="#adopt" class="cta-btn nav-cta">Adopt Now</a>
     </nav>
     <section class="hero" id="home">
       <div class="hero-content">
-        <h1>Welcome to Paws & Claws</h1>
-        <p>Your new best friend is waiting for you!</p>
-        <a href="#pets" class="cta-btn">Meet Our Pets</a>
+        <h1>Welcome to <span class="highlight">Paws & Claws</span></h1>
+        <p>Your new best friend is waiting for you! Discover a world of love and loyalty.</p>
+        <a href="#pets" class="cta-btn hero-cta">Meet Our Pets</a>
       </div>
       <div class="hero-image">
         <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=600&q=80" alt="Happy pets">
@@ -34,6 +462,24 @@
   </header>
 
   <main>
+    <section class="features">
+      <div class="feature-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Adoption" class="feature-icon"/>
+        <h3>Easy Adoption</h3>
+        <p>Find your perfect pet and take them home the same day!</p>
+      </div>
+      <div class="feature-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/690/690996.png" alt="Grooming" class="feature-icon"/>
+        <h3>Grooming Services</h3>
+        <p>Keep your pets healthy and happy with our professional grooming.</p>
+      </div>
+      <div class="feature-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Pet Care" class="feature-icon"/>
+        <h3>Pet Care Advice</h3>
+        <p>Get expert tips on caring for your furry friends.</p>
+      </div>
+    </section>
+
     <section class="featured" id="pets">
       <h2>
         <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Featured Pets" class="section-icon"/>
@@ -42,33 +488,51 @@
       <div class="pet-grid">
         <div class="pet-card">
           <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80" alt="Max the Dog">
-          <h3>
-            <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Dog" class="pet-type-icon"/>
-            Max
-          </h3>
-          <p>2-year-old Labrador, friendly and energetic.</p>
+          <div class="pet-info">
+            <h3>
+              <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Dog" class="pet-type-icon"/>
+              Max
+            </h3>
+            <p>2-year-old Labrador, friendly and energetic.</p>
+            <span class="pet-tag dog">Dog</span>
+          </div>
           <button class="adopt-btn">Adopt Me</button>
         </div>
         <div class="pet-card">
           <img src="https://images.unsplash.com/photo-1518715308788-3005759c81d8?auto=format&fit=crop&w=400&q=80" alt="Bella the Cat">
-          <h3>
-            <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Cat" class="pet-type-icon"/>
-            Bella
-          </h3>
-          <p>1-year-old Tabby, playful and loving.</p>
+          <div class="pet-info">
+            <h3>
+              <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Cat" class="pet-type-icon"/>
+              Bella
+            </h3>
+            <p>1-year-old Tabby, playful and loving.</p>
+            <span class="pet-tag cat">Cat</span>
+          </div>
           <button class="adopt-btn">Adopt Me</button>
         </div>
         <div class="pet-card">
           <img src="https://images.unsplash.com/photo-1502672023488-70e25813f145?auto=format&fit=crop&w=400&q=80" alt="Snowy the Rabbit">
-          <h3>
-            <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Rabbit" class="pet-type-icon"/>
-            Snowy
-          </h3>
-          <p>6-month-old Rabbit, gentle and cuddly.</p>
+          <div class="pet-info">
+            <h3>
+              <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Rabbit" class="pet-type-icon"/>
+              Snowy
+            </h3>
+            <p>6-month-old Rabbit, gentle and cuddly.</p>
+            <span class="pet-tag rabbit">Rabbit</span>
+          </div>
           <button class="adopt-btn">Adopt Me</button>
         </div>
       </div>
+      <div class="pet-gallery">
+        <h4>Our Happy Adoptions</h4>
+        <div class="gallery-row">
+          <img src="https://images.unsplash.com/photo-1518715308788-3005759c81d8?auto=format&fit=crop&w=200&q=80" alt="Adopted Pet 1"/>
+          <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=200&q=80" alt="Adopted Pet 2"/>
+          <img src="https://images.unsplash.com/photo-1502672023488-70e25813f145?auto=format&fit=crop&w=200&q=80" alt="Adopted Pet 3"/>
+        </div>
+      </div>
     </section>
+
     <section class="about" id="about">
       <h2>
         <img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png" alt="About Us" class="section-icon"/>
@@ -76,12 +540,20 @@
       </h2>
       <div class="about-content">
         <img src="https://images.unsplash.com/photo-1518715308788-3005759c81d8?auto=format&fit=crop&w=400&q=80" alt="Pet shop staff" class="about-img" />
-        <p>
-          Paws & Claws Pet Shop is dedicated to helping pets find loving homes.
-          We provide adoption, grooming, and pet care services. Visit us and meet your new best friend!
-        </p>
+        <div>
+          <p>
+            Paws & Claws Pet Shop is dedicated to helping pets find loving homes.<br>
+            We provide adoption, grooming, and pet care services. Visit us and meet your new best friend!
+          </p>
+          <ul class="about-list">
+            <li><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Paw" class="list-icon"/> 100+ Happy Adoptions</li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Paw" class="list-icon"/> Professional Staff</li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Paw" class="list-icon"/> Friendly Environment</li>
+          </ul>
+        </div>
       </div>
     </section>
+
     <section class="contact" id="contact">
       <h2>
         <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Contact" class="section-icon"/>
@@ -96,6 +568,22 @@
           <button type="submit">Send Message</button>
         </form>
       </div>
+      <div class="contact-info">
+        <div>
+          <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location" class="contact-icon"/> 123 Pet Street, HappyTown
+        </div>
+        <div>
+          <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" class="contact-icon"/> info@pawsclaws.com
+        </div>
+        <div>
+          <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Phone" class="contact-icon"/> +1 234 567 890
+        </div>
+        <div class="socials">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon"/></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Facebook" class="social-icon"/></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Twitter" class="social-icon"/></a>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -103,5 +591,10 @@
     <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Footer Paw" class="footer-icon"/>
     <p>&copy; 2025 Paws & Claws Pet Shop. All rights reserved.</p>
   </footer>
+
+  <!-- Floating chat/help button -->
+  <a href="#contact" class="help-btn" title="Chat or Help">
+    <img src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png" alt="Help"/>
+  </a>
 </body>
 </html>
